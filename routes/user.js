@@ -3,6 +3,7 @@
 
 const { Router } = require('express')
 const userRouter = Router()
+const { adminModel, courseModel } = require("../db");
 
 userRouter.post("/signup",(req,res)=>{
     req.json({
@@ -20,6 +21,6 @@ userRouter.post("/purchases",(req,res)=>{
     })
 })
 
-module.exports({
+module.exports={
     userRouter:userRouter
-})
+}
