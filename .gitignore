@@ -1,0 +1,49 @@
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore node_modules directory (common in Node.js projects)
+node_modules/
+
+# Ignore build output directories
+/dist/
+/build/
+/out/
+
+# Ignore local environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignore log files
+*.log
+logs/
+
+# Ignore dependency directories
+bower_components/
+jspm_packages/
+
+# Ignore compiled files
+*.class
+*.exe
+*.dll
+*.so
+*.o
+*.a
+
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore system files
+*.swp
+*.swo
