@@ -13,7 +13,7 @@ app.use("/course", courseRouter);
 async function main() {
   try {
     await mongoose.connect(
-      "mongodb+srv://sanmaypaine:z4GqRVmy6rDZICve@cluster0.tw7q1.mongodb.net/course-app"
+      ""
     );
     app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
