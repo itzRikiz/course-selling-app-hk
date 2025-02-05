@@ -1,7 +1,8 @@
 const { Router } = require("express");
 const adminRouter = Router();
 const jwt = require("jsonwebtoken");
-const { adminModel } = require("../db");
+const { adminModel, courseModel } = require("../db");
+const { adminMiddleware } = require("../middlewares/admin");
 const JWT_ADMIN_SECRET = "lord_sanmay_is_realHero";
 
 adminRouter.post("/signup", async function (req, res) {
@@ -46,15 +47,40 @@ adminRouter.post("/signin", async function (req, res) {
   }
 });
 
-adminRouter.post("/course", function (req, res) {
+adminRouter.post("/course", adminMiddleware, async function (req, res) {
+  const adminID = req.userId;
+  const { title, description, imageUrl, price } = req.body;
+  const course = await courseModel.create({
+    title: title,
+    description: description,
+    imageUrl: imageUrl,
+    price: price,
+    creatorId: adminID,
+  });
   res.json({
-    message: "Signup succeeded",
+    message: "Course Created",
+    courseId: course._id,
   });
 });
 
-adminRouter.put("/course", function (req, res) {
+adminRouter.put("/course", adminMiddleware, async function (req, res) {
+  const adminID = req.userId;
+  const { title, description, imageUrl, price, courseId } = req.body;
+  const course = await courseModel.updateOne(
+    {
+      _id: courseId,
+      courseId: adminID,
+    },
+    {
+      title: title,
+      description: description,
+      imageUrl: imageUrl,
+      price: price,
+    }
+  );
   res.json({
-    message: "Signup succeeded",
+    message: "Course Updated Successfully",
+    courseId: course._id,
   });
 });
 
