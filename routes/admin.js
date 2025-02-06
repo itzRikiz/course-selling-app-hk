@@ -84,9 +84,9 @@ adminRouter.put("/course", adminMiddleware, async function (req, res) {
   });
 });
 
-adminRouter.get("/course/bulk", function (req, res) {
+adminRouter.get("/course/bulk", async function (req, res) {
+  const courses = await courseModel.find({});
   res.json({
-    message: "Course updated",
     courses,
   });
 });
